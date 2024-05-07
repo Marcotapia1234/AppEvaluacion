@@ -14,6 +14,7 @@
 		A98C5D102BEA6DC50059A3F7 /* AppEvaluacionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98C5D0F2BEA6DC50059A3F7 /* AppEvaluacionTests.swift */; };
 		A98C5D1A2BEA6DC60059A3F7 /* AppEvaluacionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98C5D192BEA6DC60059A3F7 /* AppEvaluacionUITests.swift */; };
 		A98C5D1C2BEA6DC60059A3F7 /* AppEvaluacionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98C5D1B2BEA6DC60059A3F7 /* AppEvaluacionUITestsLaunchTests.swift */; };
+		A98C5D292BEA98830059A3F7 /* EvaluaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98C5D282BEA98830059A3F7 /* EvaluaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		A98C5D152BEA6DC50059A3F7 /* AppEvaluacionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppEvaluacionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A98C5D192BEA6DC60059A3F7 /* AppEvaluacionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvaluacionUITests.swift; sourceTree = "<group>"; };
 		A98C5D1B2BEA6DC60059A3F7 /* AppEvaluacionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvaluacionUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A98C5D282BEA98830059A3F7 /* EvaluaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				A98C5D002BEA6DC10059A3F7 /* ContentView.swift */,
 				A98C5D022BEA6DC40059A3F7 /* Assets.xcassets */,
 				A98C5D042BEA6DC40059A3F7 /* Preview Content */,
+				A98C5D282BEA98830059A3F7 /* EvaluaView.swift */,
 			);
 			path = AppEvaluacion;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				A98C5D012BEA6DC10059A3F7 /* ContentView.swift in Sources */,
 				A98C5CFF2BEA6DC10059A3F7 /* AppEvaluacionApp.swift in Sources */,
+				A98C5D292BEA98830059A3F7 /* EvaluaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
