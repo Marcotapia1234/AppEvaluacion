@@ -5,7 +5,11 @@
 //  Created by Marco on 7/5/24.
 //
 
+import Foundation
 import SwiftUI
+import FirebaseAuth
+//import GoogleSignIn
+import FirebaseCore
 
 struct ContentView: View {
     var body: some View {
