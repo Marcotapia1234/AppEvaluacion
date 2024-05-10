@@ -22,6 +22,7 @@ struct EvaluaView: View {
         
         
         //self.evaluado = self.manoBajo && self.manoAlto && self.manoMedio
+        //en principio se queria utilizar la variable para seleccionar al boton de eleccion
         
             ZStack {
                     
@@ -112,6 +113,8 @@ struct CaritaView: View{
     @Binding var manoA : Bool
     @Binding var manoB : Bool
     @Binding var manoM : Bool
+    //se han creado tres variables que estaran dentro del botón para comprobar si han sido llamadas y está activado alguna.
+    //al seleccionar una de ellas cambia de color y desactiva las dos.
     
     var body: some View{
         VStack{
@@ -126,11 +129,27 @@ struct CaritaView: View{
                         Image(systemName: icon)
                             .font(.system(size: 70))
                             .foregroundColor(selecc ?  .yellow : .primary)
-                }
+                            .overlay(
+                                        
+                        Group {
+                                if selecc {
+                                //El círculo solo se muestra cuando 'selecc' es true
+                                 Circle()
+                                 .fill(Color.white)
+                                // El color que quieras usar para el círculo
+                                 .frame(width: 75, height: 75)
+                                // Tamaño del círculo (ajusta según sea necesario)
+                                 .opacity(0.7)
+                                     }
+                                 }
+                               )
+                            }
+            
+                        }
                 Spacer()
             }
               
                    
-          }
-    }
+  }
+    
 
