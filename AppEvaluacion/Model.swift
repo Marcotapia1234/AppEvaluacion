@@ -18,3 +18,5 @@ enum Satisfaccion: String{
     case medio = "medio"
     case bajo = "bajo"
 }
+
+

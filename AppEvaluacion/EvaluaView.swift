@@ -14,9 +14,15 @@ struct EvaluaView: View {
     @State var manoAlto : Bool = false
     @State var manoMedio : Bool = false
     @State var manoBajo : Bool = false
-    var registro = Registro()
+    @State var evaluado : Bool = false
+    
+    var registro = Registro() //inicializa en Model
     
     var body: some View {
+        
+        
+        //self.evaluado = self.manoBajo && self.manoAlto && self.manoMedio
+        
             ZStack {
                     
                     Color.purple.edgesIgnoringSafeArea(.all)
@@ -26,9 +32,10 @@ struct EvaluaView: View {
             ExtractedView()
             
                 HStack{
-                CaritaView (texto:"ALTO", icon: "hand.thumbsup", mano: $manoAlto)
-                CaritaView (texto:"MEDIO", icon: "hand.point.right", mano: $manoAlto)
-                CaritaView (texto:"BAJO", icon: "hand.thumbsdown", mano: $manoAlto)
+                
+                    CaritaView (texto:"ALTO", icon: "hand.thumbsup", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"MEDIO", icon: "hand.point.right", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"BAJO", icon: "hand.thumbsdown", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
                 
                     .padding(.bottom, 20)
             }
@@ -79,6 +86,7 @@ struct EvaluaView: View {
     }
 }
 
+
 struct EvaluaView_Previews: PreviewProvider {
     static var previews: some View {
         EvaluaView()
@@ -98,18 +106,31 @@ struct ExtractedView: View {
 struct CaritaView: View{
     var texto:String
     var icon:String
-    @Binding var mano : Bool
+    //@State var selecc = false
+    @Binding var selecc : Bool
+    @Binding var eval : Bool
+    @Binding var manoA : Bool
+    @Binding var manoB : Bool
+    @Binding var manoM : Bool
     
     var body: some View{
         VStack{
                 Text(texto)
-                Image(systemName: icon)
-                    .font(.system(size: 70))
-                    .onTapGesture {
-                        mano = true
-    //animation(CASpringAnimation, value:   )
+            
+                Button(action: {
+                    eval = manoA || manoB || manoM
+                    if !eval {
+                        selecc.toggle()
                     }
-            Spacer()
-        }
+                    else {} }) {
+                        Image(systemName: icon)
+                            .font(.system(size: 70))
+                            .foregroundColor(selecc ?  .yellow : .primary)
+                }
+                Spacer()
+            }
+              
+                   
+          }
     }
-}
+
