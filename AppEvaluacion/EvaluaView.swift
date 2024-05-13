@@ -34,9 +34,9 @@ struct EvaluaView: View {
             
                 HStack{
                 
-                    CaritaView (texto:"ALTO", icon: "hand.thumbsup", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
-                    CaritaView (texto:"MEDIO", icon: "hand.point.right", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
-                    CaritaView (texto:"BAJO", icon: "hand.thumbsdown", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"ALTO", icon: "hand.thumbsup.fill", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"MEDIO", icon: "hand.point.right.fill", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"BAJO", icon: "hand.thumbsdown.fill", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
                 
                     .padding(.bottom, 20)
             }
