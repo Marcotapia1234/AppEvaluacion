@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import FirebaseAuth
-//import GoogleSignIn
+import GoogleSignIn
 import FirebaseCore
 
 struct ContentView: View {

@@ -27,7 +27,7 @@ struct AppEvaluacionApp: App {
     
     var body: some Scene {
          WindowGroup {
-             ContentView()
+             HolderView().environmentObject(AuthViewModel())
          }
     }
 }
@@ -41,9 +41,9 @@ struct AppEvaluacionApp: App {
     // register app delegate for Firebase setup
     
     
-   /*var body: some Scene {
+   var body: some Scene {
         WindowGroup {
             HolderView().environmentObject(AuthViewModel())
             //ContentView(viewModel: viewModel).environmentObject(almacenInicial)
-        }*/
-
+        }
+   }

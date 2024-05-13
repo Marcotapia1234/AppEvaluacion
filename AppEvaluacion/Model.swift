@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+import FirebaseFirestoreSwift
 
 struct Registro{
     var valoracion: Satisfaccion = Satisfaccion.alto
