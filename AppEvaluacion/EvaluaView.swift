@@ -34,9 +34,9 @@ struct EvaluaView: View {
             
                 HStack{
                 
-                    CaritaView (texto:"ALTO", icon: "alegre", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
-                    CaritaView (texto:"MEDIO", icon: "medio", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
-                    CaritaView (texto:"BAJO", icon: "bajo", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"ALTO", icon: "hand.thumbsup.fill", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"MEDIO", icon: "hand.point.right.fill", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"BAJO", icon: "hand.thumbsdown.fill", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
                 
                     .padding(.bottom, 20)
             }
@@ -134,12 +134,12 @@ struct CaritaView: View{
                         Group {
                                 if selecc {
                                 //El círculo solo se muestra cuando 'selecc' es true
-                                 Circle()
-                                 .fill(Color.white)
+                                 //Circle()
+                                 //.fill(Color.white)
                                 // El color que quieras usar para el círculo
-                                 .frame(width: 75, height: 75)
+                                // .frame(width: 75, height: 75)
                                 // Tamaño del círculo (ajusta según sea necesario)
-                                 .opacity(0.7)
+                                 //.opacity(0.7)
                                      }
                                  }
                                )

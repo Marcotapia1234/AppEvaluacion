@@ -34,14 +34,14 @@ struct SingUpView: View {
                         Text("Sign Up").bold()
                     }
         }
-                /*Section(header: Text("If you already have an account:")) {
+                Section(header: Text("If you already have an account:")) {
                     Button(action: {
                         authModel.signIn(emailAddress: emailAddress,
                                          password: password)
                     }) {
                         Text("Sign In")
                     }
-            }*/
+            }
                 
                     /*Button(action: {
                        // authModel.signInWithGoogle()
