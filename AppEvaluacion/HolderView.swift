@@ -20,7 +20,7 @@ struct HolderView: View {
             // Crear una instancia de RestaurantViewModel y pasarle el almacen
            //let viewModel = RestaurantViewModel(almacen: SettingStore())
             //ContentView(viewModel: viewModel).environmentObject(almacenInicial)
-            ContentView()
+            EvaluaView().environmentObject(authModel)
         }
         }
         .onAppear {

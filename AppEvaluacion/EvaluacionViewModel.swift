@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 import FirebaseFirestore
 
-//class EvaluacionViewModel: ObservableObject {
+class EvaluacionViewModel: ObservableObject {
     
     //@Published var restaurants: [Restaurant] = []
     //@Published var selectedRestaurant: Restaurant?
@@ -18,9 +18,16 @@ import FirebaseFirestore
 
     //@ObservedObject var almacen: SettingStore
     
-   // var databaseReference = Firestore.firestore().collection("restaurantes")
+   var databaseReference = Firestore.firestore().collection("valoraciones")
     
-   
+    func addValoracion(valoracion: Registro){
+        do{
+        _ = try databaseReference.addDocument(from: valoracion)
+        } catch {
+            print("Erro adding valoracion: \(error.localizedDescription)")
+        }
+    }
+}
     /*init(almacen: SettingStore) {
         
         self.almacen = almacen

@@ -8,11 +8,15 @@
 import Foundation
 import SwiftUI
 import FirebaseFirestoreSwift
+import FirebaseAuth
+import FirebaseFirestore
 
-struct Registro{
-    var valoracion: Satisfaccion = Satisfaccion.alto
+struct Registro: Identifiable, Codable {
+    @DocumentID var id: String?// Identificador único de FireStore
+    //var valoracion: Satisfaccion = Satisfaccion.alto
     var opinion: String = ""
     var aprendido: String = ""
+    //var usuarioE :String = ""
 }
 
 enum Satisfaccion: String{

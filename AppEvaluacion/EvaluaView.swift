@@ -15,6 +15,7 @@ struct EvaluaView: View {
     @State var manoMedio : Bool = false
     @State var manoBajo : Bool = false
     @State var evaluado : Bool = false
+    @StateObject var evaluaViewModel = EvaluacionViewModel()
     
     var registro = Registro() //inicializa en Model
     
@@ -34,12 +35,13 @@ struct EvaluaView: View {
             
                 HStack{
                 
-                    CaritaView (texto:"ALTO", icon: "hand.thumbsup.fill", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
-                    CaritaView (texto:"MEDIO", icon: "hand.point.right.fill", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
-                    CaritaView (texto:"BAJO", icon: "hand.thumbsdown.fill", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"ALTO", icon1: "alegre",icon2: "alegre2", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    Spacer()
+                    CaritaView (texto:"MEDIO", icon1: "duda",icon2: "duda2", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    Spacer()
+                    CaritaView (texto:"BAJO", icon1: "triste",icon2: "triste2", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                }.padding()
                 
-                    .padding(.bottom, 20)
-            }
               
                 VStack(alignment: .leading, spacing: 15) {
                     Text("Qué te ha parecido el taller")
@@ -60,7 +62,10 @@ struct EvaluaView: View {
 
                 HStack(spacing: 20) {
                       Button(action: {
-                                       
+                          var opinion = Registro()
+                          opinion.opinion = text
+                          opinion.aprendido = text1
+                          evaluaViewModel.addValoracion(valoracion: opinion)
                           }) {
                                 Text("Guardar")
                                 .padding()
@@ -106,8 +111,8 @@ struct ExtractedView: View {
 
 struct CaritaView: View{
     var texto:String
-    var icon:String
-    //@State var selecc = false
+    var icon1:String
+    var icon2:String    //@State var selecc = false
     @Binding var selecc : Bool
     @Binding var eval : Bool
     @Binding var manoA : Bool
@@ -117,32 +122,35 @@ struct CaritaView: View{
     //al seleccionar una de ellas cambia de color y desactiva las dos.
     
     var body: some View{
-        VStack{
+        VStack(alignment: .center){
                 Text(texto)
             
                 Button(action: {
-                    eval = manoA || manoB || manoM
+                    //eval = manoA || manoB || manoM
                     if !eval {
+                        manoA = false
+                        manoB = false
+                        manoM = false
                         selecc.toggle()
                     }
                     else {} }) {
-                        Image(systemName: icon)
-                            .font(.system(size: 70))
-                            .foregroundColor(selecc ?  .yellow : .primary)
-                            .overlay(
-                                        
-                        Group {
-                                if selecc {
-                                //El círculo solo se muestra cuando 'selecc' es true
-                                 //Circle()
-                                 //.fill(Color.white)
-                                // El color que quieras usar para el círculo
-                                // .frame(width: 75, height: 75)
-                                // Tamaño del círculo (ajusta según sea necesario)
-                                 //.opacity(0.7)
-                                     }
-                                 }
-                               )
+                        //if selecc == true
+                        if (!selecc == true) {
+                            Image(icon1)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 60)
+                                .onTapGesture {
+                                    selecc.toggle()
+                                }
+                            
+                        }else{
+                            Image(icon2)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 60)                     //.foregroundColor(selecc ?  .primary : .yellow)
+                        }
+                            
                             }
             
                         }
