@@ -13,10 +13,12 @@ import FirebaseFirestore
 
 struct Registro: Identifiable, Codable {
     @DocumentID var id: String?// Identificador único de FireStore
-    //var valoracion: Satisfaccion = Satisfaccion.alto
-    var opinion: String = ""
-    var aprendido: String = ""
-    //var usuarioE :String = ""
+    //var valoracion: Satisfaccion
+    var taller: String
+    var opinion: String
+    var aprendido: String
+    var usuarioE :String
+    var valorcarita:Int
 }
 
 enum Satisfaccion: String{

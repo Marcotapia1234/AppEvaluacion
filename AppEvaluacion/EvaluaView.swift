@@ -11,13 +11,15 @@ struct EvaluaView: View {
    // @State private var rectangleColorChange = false
     @State private var text: String = ""
     @State private var text1: String = ""
+    var listado : [String] = ["Habilidades Sociales", "Apps Developers", "Desarrollo de Proyectos"]
+    @State var tallerseleccionado: String = ""
     @State var manoAlto : Bool = false
     @State var manoMedio : Bool = false
     @State var manoBajo : Bool = false
     @State var evaluado : Bool = false
     @StateObject var evaluaViewModel = EvaluacionViewModel()
-    
-    var registro = Registro() //inicializa en Model
+    @EnvironmentObject private var usuarioact: AuthViewModel
+    //var registro = Registro() //inicializa en Model
     
     var body: some View {
         
@@ -31,7 +33,7 @@ struct EvaluaView: View {
             
             VStack (alignment: .center, spacing: 20){
                  
-            ExtractedView()
+            ExtractedView(listado: listado, tallerselec: $tallerseleccionado)
             
                 HStack{
                 
@@ -62,9 +64,9 @@ struct EvaluaView: View {
 
                 HStack(spacing: 20) {
                       Button(action: {
-                          var opinion = Registro()
-                          opinion.opinion = text
-                          opinion.aprendido = text1
+                          let usuario = usuarioact.user?.email ?? ""
+                          let opinion = Registro(taller: tallerseleccionado, opinion: text, aprendido: text1,usuarioE: usuario, valorcarita: )
+                          
                           evaluaViewModel.addValoracion(valoracion: opinion)
                           }) {
                                 Text("Guardar")
@@ -100,13 +102,26 @@ struct EvaluaView_Previews: PreviewProvider {
 }
 
 struct ExtractedView: View {
+    var listado : [String]
+    @Binding var tallerselec: String
     var body: some View {
         VStack(alignment: .leading, spacing: 2){
             Text("Valora el taller")
                 .font(.system(.title, design: .rounded))
                 .fontWeight(.black)
+            Menu("Selecciona el taller") {
+                ForEach(listado,id: \.self) {elemento in
+                            Button(elemento) {
+                                // Acción cuando se selecciona la opción 1
+                                tallerselec = elemento
+                                print(tallerselec)
+                            }
+                }
+                           
+           
         }
     }
+}
 }
 
 struct CaritaView: View{
