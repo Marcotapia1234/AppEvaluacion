@@ -17,6 +17,7 @@ struct EvaluaView: View {
     @State var manoMedio : Bool = false
     @State var manoBajo : Bool = false
     @State var evaluado : Bool = false
+    @State var valorcarita: Int = 0
     @StateObject var evaluaViewModel = EvaluacionViewModel()
     @EnvironmentObject private var usuarioact: AuthViewModel
     //var registro = Registro() //inicializa en Model
@@ -37,13 +38,12 @@ struct EvaluaView: View {
             
                 HStack{
                 
-                    CaritaView (texto:"ALTO", icon1: "alegre",icon2: "alegre2", selecc: $manoAlto, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"ALTO", icon1: "alegre",icon2: "alegre2", selecc: $manoAlto, valorA: $valorcarita)
                     Spacer()
-                    CaritaView (texto:"MEDIO", icon1: "duda",icon2: "duda2", selecc: $manoMedio, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"MEDIO", icon1: "duda",icon2: "duda2", selecc: $manoMedio, valorA: $valorcarita)
                     Spacer()
-                    CaritaView (texto:"BAJO", icon1: "triste",icon2: "triste2", selecc: $manoBajo, eval: $evaluado, manoA: $manoAlto, manoB: $manoBajo,manoM: $manoMedio)
+                    CaritaView (texto:"BAJO", icon1: "triste",icon2: "triste2", selecc: $manoBajo, valorA: $valorcarita)
                 }.padding()
-                
               
                 VStack(alignment: .leading, spacing: 15) {
                     Text("Qué te ha parecido el taller")
@@ -65,7 +65,7 @@ struct EvaluaView: View {
                 HStack(spacing: 20) {
                       Button(action: {
                           let usuario = usuarioact.user?.email ?? ""
-                          let opinion = Registro(taller: tallerseleccionado, opinion: text, aprendido: text1,usuarioE: usuario, valorcarita: )
+                          let opinion = Registro(taller: tallerseleccionado, opinion: text, aprendido: text1,usuarioE: usuario, valorcarita:valorcarita)
                           
                           evaluaViewModel.addValoracion(valoracion: opinion)
                           }) {
@@ -129,37 +129,44 @@ struct CaritaView: View{
     var icon1:String
     var icon2:String    //@State var selecc = false
     @Binding var selecc : Bool
-    @Binding var eval : Bool
-    @Binding var manoA : Bool
+    @Binding var valorA : Int
+    //@Binding var eval : Bool
+    /*@Binding var manoA : Bool
     @Binding var manoB : Bool
-    @Binding var manoM : Bool
+    @Binding var manoM : Bool*/
+    
     //se han creado tres variables que estaran dentro del botón para comprobar si han sido llamadas y está activado alguna.
     //al seleccionar una de ellas cambia de color y desactiva las dos.
     
     var body: some View{
         VStack(alignment: .center){
-                Text(texto)
+                
             
                 Button(action: {
                     //eval = manoA || manoB || manoM
-                    if !eval {
-                        manoA = false
-                        manoB = false
-                        manoM = false
+                    if selecc {
                         selecc.toggle()
                     }
-                    else {} }) {
+                    else {
+                        selecc.toggle()
+                        switch texto{
+                        case "ALTO" : valorA = 0
+                        case "MEDIO" : valorA = 1
+                        case "BAJO" : valorA = 2
+                        default:
+                            valorA = 0
+                        }
+                        
+                    } }) {
                         //if selecc == true
                         if (!selecc == true) {
+                            Text(texto)
                             Image(icon1)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 60)
-                                .onTapGesture {
-                                    selecc.toggle()
-                                }
-                            
                         }else{
+                            Text(texto)
                             Image(icon2)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
