@@ -28,68 +28,77 @@ struct EvaluaView: View {
         //self.evaluado = self.manoBajo && self.manoAlto && self.manoMedio
         //en principio se queria utilizar la variable para seleccionar al boton de eleccion
         
+        NavigationView {
             ZStack {
-                    
-                    Color.purple.edgesIgnoringSafeArea(.all)
-            
-            VStack (alignment: .center, spacing: 20){
-                 
-            ExtractedView(listado: listado, tallerselec: $tallerseleccionado)
-            
-                HStack{
+                        
+                        Color.purple.edgesIgnoringSafeArea(.all)
                 
-                    CaritaView (texto:"ALTO", icon1: "alegre",icon2: "alegre2", selecc: $manoAlto, valorA: $valorcarita)
-                    Spacer()
-                    CaritaView (texto:"MEDIO", icon1: "duda",icon2: "duda2", selecc: $manoMedio, valorA: $valorcarita)
-                    Spacer()
-                    CaritaView (texto:"BAJO", icon1: "triste",icon2: "triste2", selecc: $manoBajo, valorA: $valorcarita)
-                }.padding()
-              
-                VStack(alignment: .leading, spacing: 15) {
-                    Text("Qué te ha parecido el taller")
-                        .fontWeight(.black)
-            
-                    TextField("Ingrese texto aquí", text: $text)
-                            .padding()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                    Text("Has aprendido algo nuevo")
-                        .fontWeight(.black)
-            
-                    TextField("Ingrese texto aquí", text: $text1)
-                            .padding()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-          }
-             .padding(.horizontal, 20)
-
-                HStack(spacing: 20) {
-                      Button(action: {
-                          let usuario = usuarioact.user?.email ?? ""
-                          let opinion = Registro(taller: tallerseleccionado, opinion: text, aprendido: text1,usuarioE: usuario, valorcarita:valorcarita)
-                          
-                          evaluaViewModel.addValoracion(valoracion: opinion)
-                          }) {
-                                Text("Guardar")
+                VStack (alignment: .center, spacing: 20){
+                     
+                ExtractedView(listado: listado, tallerselec: $tallerseleccionado)
+                
+                    HStack{
+                    
+                        CaritaView (texto:"ALTO", icon1: "alegre",icon2: "alegre2", selecc: $manoAlto, valorA: $valorcarita)
+                        Spacer()
+                        CaritaView (texto:"MEDIO", icon1: "duda",icon2: "duda2", selecc: $manoMedio, valorA: $valorcarita)
+                        Spacer()
+                        CaritaView (texto:"BAJO", icon1: "triste",icon2: "triste2", selecc: $manoBajo, valorA: $valorcarita)
+                    }.padding()
+                  
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Qué te ha parecido el taller")
+                            .fontWeight(.black)
+                
+                        TextField("Ingrese texto aquí", text: $text)
                                 .padding()
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                             }
-                                    
-                        Button(action: {
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                        Text("Has aprendido algo nuevo")
+                            .fontWeight(.black)
+                
+                        TextField("Ingrese texto aquí", text: $text1)
+                                .padding()
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+              }
+                 .padding(.horizontal, 20)
+
+                    HStack(spacing: 20) {
+                          Button(action: {
+                              let usuario = usuarioact.user?.email ?? ""
+                              let opinion = Registro(taller: tallerseleccionado, opinion: text, aprendido: text1,usuarioE: usuario, valorcarita:valorcarita)
+                              
+                              evaluaViewModel.addValoracion(valoracion: opinion)
+                              }) {
+                                    Text("Guardar")
+                                    .padding()
+                                    .background(Color.green)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                 }
                                         
-                          }) {
-                                Text("Salir")
-                                .padding()
-                                .background(Color.red)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                             }
+                            Button(action: {
+                                            
+                              }) {
+                                    Text("Salir")
+                                    .padding()
+                                    .background(Color.red)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                 }
+                        if (usuarioact.user?.email == "ana.t@gmail.com"){
+                            
+                            NavigationLink(destination: ValortacionesAlumnosView(taller: $tallerseleccionado)) {
+                                Text("Estadisticas Taller Seleccionado")
+                            }
                         }
-                          .padding(.top, 20)
-                    }
-                          .padding()
-        
+                        
+                            }
+                              .padding(.top, 20)
+                        }
+                              .padding()
+            
+            }
         }
     }
 }

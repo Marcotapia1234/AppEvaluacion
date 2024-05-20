@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 import FirebaseFirestore
 
-struct Registro: Identifiable, Codable {
+struct Registro: Identifiable, Codable, Hashable {
     @DocumentID var id: String?// Identificador único de FireStore
     //var valoracion: Satisfaccion
     var taller: String
